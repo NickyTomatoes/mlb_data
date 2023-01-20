@@ -2,7 +2,7 @@
 
 
 
-***** Please view the RAW read.me file near the top right *****
+***** Please view the RAW readme file near the top right *****
 
 
 
