@@ -1,4 +1,11 @@
 # mlb_data
+
+
+
+***** Please view the RAW read.me file near the top right *****
+
+
+
 SQL project for the 2022 MLB season showcasing custom queries to reveal batting and pitching statistics! 
 
 This 2022 statisticle data was pulled from :
