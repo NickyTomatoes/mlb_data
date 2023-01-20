@@ -1,0 +1,119 @@
+-- Finding the pitcher with the most strikeouts ( top ten )
+SELECT 
+	name,
+    tm AS team,
+    so AS strike_outs
+FROM pitching
+WHERE so != 0
+ORDER BY strike_outs DESC
+LIMIT 10;
+
+-- Which batter had the most home runs? 
+SELECT 
+	name,
+    tm,
+    hr
+FROM batting
+ORDER BY hr DESC
+LIMIT 10;
+
+-- Which batter had the most extra base hits? 
+SELECT 
+	name,
+    tm,
+    SUM(2b + 3b + hr) AS extra_base_hits
+FROM batting 
+GROUP BY name
+ORDER BY extra_base_hits DESC
+LIMIT 10;
+
+-- How many players hit a hr this year??
+SELECT 
+	DISTINCT(COUNT(name)) AS hr_hitters
+FROM batting
+WHERE hr != 0;
+
+-- Oldest Pitcher to record a strikeout?
+SELECT
+	name,
+    age,
+    so
+FROM pitching
+WHERE so > 0
+ORDER BY age DESC
+LIMIT 1;
+
+-- Youngest pitcher to record a strikeout?
+SELECT
+	name,
+    age,
+    so
+FROM pitching
+WHERE so > 0
+ORDER BY age 
+LIMIT 1;
+
+-- Total HR per league? 
+SELECT 
+	lg AS league,
+    SUM(hr) AS total_hr
+FROM batting 
+GROUP BY lg;
+
+-- top 10 Players with the most hits? 
+SELECT 
+	name,
+    tm,
+    h
+FROM batting 
+ORDER BY h DESC
+LIMIT 10;
+
+-- What pitcher gave up the most hrs?
+SELECT 
+	name,
+    tm,
+    hr
+FROM pitching
+ORDER BY hr DESC
+LIMIT 1;
+
+-- Who had the most walks? (batting)
+SELECT 
+	name,
+    tm,
+    bb
+FROM batting
+ORDER BY bb DESC
+LIMIT 1;
+
+--  pitchers with the highest walks 
+SELECT 
+	name,
+    tm,
+    bb
+FROM pitching
+ORDER BY bb DESC
+LIMIT 1;
+
+-- Which team led the MLB in hits? 
+SELECT 
+	tm,
+    SUM(h)
+FROM batting 
+GROUP BY tm
+ORDER BY h DESC;
+
+-- Which team led the MLB in strikeouts? 
+SELECT 
+	tm,
+    SUM(so) AS strikeouts
+FROM pitching
+GROUP BY tm
+ORDER BY so DESC;
+
+-- How many pitchers did not record a strikeout? 
+SELECT 
+	COUNT(name) AS no_so
+FROM pitching
+WHERE so = 0;
