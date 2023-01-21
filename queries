@@ -3,7 +3,7 @@
 -- Finding the pitcher with the most strikeouts ( top ten )
 
 SELECT 
-	name,
+    name,
     tm AS team,
     so AS strike_outs
 FROM pitching
@@ -50,65 +50,132 @@ LIMIT 10;
 
 
 -- Which batters had the most extra base hits? (Top Ten)
+
 SELECT 
-	name,
-    tm,
+    name,
     SUM(2b + 3b + hr) AS extra_base_hits
 FROM batting 
 GROUP BY name
 ORDER BY extra_base_hits DESC
 LIMIT 10;
 
--- How many players hit a hr this year??
+	name		 extra_base _hits
+	
+	Brandon Drury	 122
+	Juan Soto*	 108
+	Elvis Andrus	 98
+	Josh Bell#	 98
+	David Peralta*	 90
+	Aaron Judge	 90
+	Luke Voit	 88
+	Trey Mancini	 84
+	Tommy Pham	 82
+	Whit Merrifield	 80
+
+
+
+-- How many players hit a hr this year?? (total # of players to record atleast 1 hr)
+
 SELECT 
-	DISTINCT(COUNT(name)) AS hr_hitters
+    DISTINCT(COUNT(name)) AS hr_hitters
 FROM batting
 WHERE hr != 0;
 
+	hr_hitters
+	
+	637
+	
+	
+
 -- Oldest Pitcher to record a strikeout?
+
 SELECT
-	name,
-    age,
-    so
+    name,
+    tm AS team,
+    age
 FROM pitching
 WHERE so > 0
 ORDER BY age DESC
 LIMIT 1;
 
+	name            team    age
+	
+	Rich Hill*	BOS	42
+
+
+
 -- Youngest pitcher to record a strikeout?
+
 SELECT
-	name,
-    age,
-    so
+    name,
+    tm AS team,
+    age
 FROM pitching
 WHERE so > 0
 ORDER BY age 
 LIMIT 1;
 
+	name                     team   age
+	
+	Simeon Woods Richardson	 MIN	21
+
+
 -- Total HR per league? 
+
 SELECT 
-	lg AS league,
+    lg AS league,
     SUM(hr) AS total_hr
 FROM batting 
+WHERE lg IN ("NL", "AL")
 GROUP BY lg;
 
+	league   total_hr
+	
+	NL	 2856
+ 	AL	 2674
+	
+	
+
 -- top 10 Players with the most hits? 
+
 SELECT 
-	name,
+    name,
     tm,
     h
 FROM batting 
 ORDER BY h DESC
 LIMIT 10;
 
+	name                    team    hits
+	
+	Freddie Freeman*	LAD	199
+	Trea Turner	   	LAD	194
+	Bo Bichette		TOR	189
+	José Abreu		CHW	183
+	Amed Rosario		CLE	180
+	Nathaniel Lowe*		TEX	179
+	Paul Goldschmidt	STL	178
+	Aaron Judge		NYY	177
+	Dansby Swanson		ATL	177
+	Vladimir Guerrero Jr.	TOR	175
+	
+	
+
 -- What pitcher gave up the most hrs?
+
 SELECT 
-	name,
-    tm,
-    hr
+    name,
+    tm AS team,
+    hr AS home_runs
 FROM pitching
 ORDER BY hr DESC
 LIMIT 1;
+
+	name		team	age
+	
+	Josiah Gray	WSN	38
+	
+	
 
 -- Who had the most walks? (batting)
 SELECT 
