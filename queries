@@ -1,4 +1,7 @@
+*** These are the raw SQL queries ran with MySQL ***
+
 -- Finding the pitcher with the most strikeouts ( top ten )
+
 SELECT 
 	name,
     tm AS team,
@@ -8,16 +11,45 @@ WHERE so != 0
 ORDER BY strike_outs DESC
 LIMIT 10;
 
--- Which batter had the most home runs? 
+	name            team    strike_outs
+	
+	Gerrit Cole	NYY	257
+	Corbin Burnes	MIL	243
+	Carlos Rodón*	SFG	237
+	Aaron Nola	PHI	235
+	Dylan Cease	CHW	227
+	Shohei Ohtani	LAA	219
+	Robbie Ray*	SEA	212
+	Sandy Alcantara	MIA	207
+	Charlie Morton	ATL	205
+	Kevin Gausman	TOR	205
+	
+
+-- Which batters had the most home runs? (top ten)
+
 SELECT 
-	name,
-    tm,
-    hr
+    name,
+    tm AS team,
+    hr AS home_runs
 FROM batting
 ORDER BY hr DESC
 LIMIT 10;
 
--- Which batter had the most extra base hits? 
+	name              team   home_runs
+	
+	Aaron Judge	  NYY	 62
+	Kyle Schwarber*	  PHI	 46
+	Mike Trout	  LAA	 40
+	Pete Alonso	  NYM	 40
+	Austin Riley	  ATL	 38
+	Yordan Alvarez*	  HOU	 37
+	Christian Walker  ARI	 36
+	Mookie Betts	  LAD	 35
+	Rowdy Tellez*	  MIL	 35
+	Paul Goldschmidt  STL	 35
+
+
+-- Which batters had the most extra base hits? (Top Ten)
 SELECT 
 	name,
     tm,
