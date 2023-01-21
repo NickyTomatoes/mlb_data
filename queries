@@ -178,41 +178,87 @@ LIMIT 1;
 	
 
 -- Who had the most walks? (batting)
+
 SELECT 
-	name,
-    tm,
-    bb
+    name,
+    bb AS walks
 FROM batting
 ORDER BY bb DESC
 LIMIT 1;
 
+	name 		walks
+	Juan Soto*	135
+	
+	
+
 --  pitchers with the highest walks 
+
 SELECT 
-	name,
-    tm,
-    bb
+    name,
+    tm AS team,
+    bb AS walks
 FROM pitching
 ORDER BY bb DESC
 LIMIT 1;
 
+	name 		team	walks
+	
+	Dylan Cease	CHW	78
+	
+	
+
 -- Which team led the MLB in hits? 
+
 SELECT 
-	tm,
-    SUM(h)
+    tm AS team,
+    SUM(h) AS hits
 FROM batting 
 GROUP BY tm
 ORDER BY h DESC;
 
+	team	hits
+	
+	TOR	1464
+	CHW	1435
+	MIN	1356
+	STL	1386
+	NYM	1422
+	HOU	1341
+	MIL	1271
+	ATL	1394
+	MIA	1241
+	TOT	4010
+	
+
 -- Which team led the MLB in strikeouts? 
+
 SELECT 
-	tm,
+    tm AS team,
     SUM(so) AS strikeouts
 FROM pitching
 GROUP BY tm
 ORDER BY so DESC;
 
+	team	strikeouts
+	
+	MIA	1437
+	ARI	1216
+	ATL	1554
+	HOU	1524
+	PHI	1423
+	BAL	1214
+	TBR	1384
+	COL	1187
+	DET	1195
+	OAK	1203
+
 -- How many pitchers did not record a strikeout? 
+
 SELECT 
-	COUNT(name) AS no_so
+    COUNT(name) AS no_so
 FROM pitching
 WHERE so = 0;
+
+	no_so
+	
+	66
